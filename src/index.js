@@ -31,7 +31,7 @@ app.use(cors());
 app.options("*", cors());
 
 
-var htmlFile = '';
+let htmlFile = '';
 
 const server = http.createServer(app);
 
@@ -55,10 +55,11 @@ app.post("/", upload.single("excel"), async (req, res) => {
 
 const excelToHtml = async (sheets, res) => {
 
+  htmlFile = ''
   for (let sheet in sheets) {
     if (typeof sheet !== 'undefined') {
       htmlFile += '<table summary="" class="turntable">' + '\n' + '<thead>';
-      for (var cell in sheets[sheet]) {
+      for (let cell in sheets[sheet]) {
 
         if (typeof sheets[sheet][cell].w !== 'undefined') {
           if (cell === 'A1') {
